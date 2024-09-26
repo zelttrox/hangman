@@ -1,0 +1,5 @@
+package hangman
+
+func main() {
+
+}
