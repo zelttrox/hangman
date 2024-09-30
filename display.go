@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Affichage des cases du Hangman en fonction de la taille du mot
 func PrintBlank(word string) {
@@ -10,8 +12,7 @@ func PrintBlank(word string) {
 	}
 }
 
-func PrintLetter(word string) {
-	
+func (h *Hangman) Scan() {
 }
 
 // Fonction d'affichage du Hangman
