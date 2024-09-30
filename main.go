@@ -1,12 +1,9 @@
 package main
 
-var h Hangman
+var h HangMan
 
 func main() {
-	h.Init()
-	Display()
-}
-
-func Input() {
-	
+	h.InitWorldList()
+	h.InitBlankspace()
+	h.Hangman()
 }

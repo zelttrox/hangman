@@ -1,13 +1,14 @@
 package main
 
-type Hangman struct {
-	WordList []string // Liste des mots
-	ListLen  int      // Taille de la liste
+type HangMan struct {
+	Word       string // Word composed of '_', ex: H_ll_
+	WordList   []string
+	Lives      int
+	input      string
+	blankspace []string
 
-	Word    string
-	WordLen int    // Length of the chosen word
-	ToFind  string // Final word chosen by the program at the beginning. It is the word to find
+	ToFind           string     // Final word chosen by the program at the beginning. It is the word to find
+	Attempts         int        // Number of attempts left
+	HangmanPositions [10]string // It can be the array where the positions parsed in "hangman.txt" are stored
 
-	FoundLetters string // Lettres trouvées
-	Attempts     int    // Number of attempts left
 }

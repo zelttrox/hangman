@@ -2,27 +2,55 @@ package main
 
 import (
 	"fmt"
+	"strings"
+
 	"math/rand"
 )
 
-// Import du dictionnaire dans un tableau de string
-func (h *Hangman) GetWordList() {
-	fmt.Println("~ Importing Words list")
-	h.WordList = append(h.WordList, "Hello", "Timing", "Code", "Yes")
+func (h *HangMan) InitWorldList() {
+	h.WordList = []string{"bonjour", "manger", "salut"}
+
+	h.Word = h.WordList[rand.Intn(len(h.WordList))]
+
+}
+func (h *HangMan) InitBlankspace() {
+	for range h.Word {
+		h.blankspace = append(h.blankspace, " _")
+	}
+
 }
 
-// Choix d'un mot au hasard à partir du tableau de mots
-func (h *Hangman) RandomWord(wordList []string) {
-	fmt.Println("~ Choosing a Random word")
-	h.ListLen = len(wordList)
-	wordChosen := rand.Intn(h.ListLen)
-	h.ToFind = wordList[wordChosen]
-}
+func (h *HangMan) Hangman() {
 
-// Initialisation du Hangman
-func (h *Hangman) Init() {
-	h.GetWordList()
-	h.RandomWord(h.WordList)
-	fmt.Print("Word: ")
-	fmt.Println(h.ToFind) // DEBUG
+	lives := 7
+	for {
+		fmt.Printf("Word %s Letter: ", strings.Join(h.blankspace, ""))
+
+		fmt.Scanln(&h.input)
+		fmt.Println(h.input)
+
+		for _, inputletter := range h.input {
+			guess := false
+			for i, wordletter := range h.Word {
+				if inputletter == wordletter {
+					h.blankspace[i] = string(inputletter)
+					guess = true
+				}
+			}
+
+			if !guess {
+				lives--
+			}
+		}
+		fmt.Println(h.blankspace, lives)
+
+		if lives <= 0 {
+			fmt.Printf("</3, Word: %s - AHHAHAHA YOU LOST!", h.Word)
+			break
+		}
+		if h.Word == strings.Join(h.blankspace, "") {
+			fmt.Printf(" <3 %d, Word: %s - GG YOU WON! \n", lives, h.Word)
+			break
+		}
+	}
 }
