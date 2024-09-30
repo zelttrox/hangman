@@ -1,56 +1,42 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"strings"
-
 	"math/rand"
+	"os"
 )
 
-func (h *HangMan) InitWorldList() {
-	h.WordList = []string{"bonjour", "manger", "salut"}
+// Import du dictionnaire dans un tableau de string
+func (h *Hangman) GetWordList(path string) ([]string, error) {
+	fmt.Println("~ Importing Words list")
 
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		h.List = append(h.List, scanner.Text())
+	}
+	return h.List, scanner.Err()
+}
+
+func (h *Hangman) RandomWord() {
+	h.WordList = h.List
 	h.Word = h.WordList[rand.Intn(len(h.WordList))]
-
 }
-func (h *HangMan) InitBlankspace() {
+
+func (h *Hangman) InitBlankspace() {
 	for range h.Word {
-		h.blankspace = append(h.blankspace, " _")
+		h.Blankspace = append(h.Blankspace, " _")
 	}
-
 }
 
-func (h *HangMan) Hangman() {
-
-	lives := 7
-	for {
-		fmt.Printf("Word %s Letter: ", strings.Join(h.blankspace, ""))
-
-		fmt.Scanln(&h.input)
-		fmt.Println(h.input)
-
-		for _, inputletter := range h.input {
-			guess := false
-			for i, wordletter := range h.Word {
-				if inputletter == wordletter {
-					h.blankspace[i] = string(inputletter)
-					guess = true
-				}
-			}
-
-			if !guess {
-				lives--
-			}
-		}
-		fmt.Println(h.blankspace, lives)
-
-		if lives <= 0 {
-			fmt.Printf("</3, Word: %s - AHHAHAHA YOU LOST!", h.Word)
-			break
-		}
-		if h.Word == strings.Join(h.blankspace, "") {
-			fmt.Printf(" <3 %d, Word: %s - GG YOU WON! \n", lives, h.Word)
-			break
-		}
-	}
+func (h *Hangman) Init() {
+	h.GetWordList("words.txt")
+	h.RandomWord()
+	h.InitBlankspace()
 }
