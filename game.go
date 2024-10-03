@@ -7,12 +7,13 @@ import (
 
 func (h *Hangman) Run() {
 
-	h.Lives = 10
+	h.Attempts = 10
+
 	for {
 		fmt.Printf("Word %s Letter: ", strings.Join(h.Blankspace, ""))
 		fmt.Scanln(&h.Input)
-		output := strings.ToUpper(h.Input)
-		fmt.Println(output)
+		h.Input = strings.ToUpper(h.Input)
+		fmt.Println(h.Input)
 
 		for _, inputletter := range h.Input {
 			guess := false
@@ -24,17 +25,17 @@ func (h *Hangman) Run() {
 			}
 
 			if !guess {
-				h.Lives--
+				h.Attempts--
 			}
 		}
-		fmt.Println(h.Blankspace, h.Lives)
+		fmt.Println(h.Blankspace, h.Attempts)
 
-		if h.Lives <= 0 {
+		if h.Attempts <= 0 {
 			fmt.Printf("</3, Word: %s - AHHAHAHA YOU LOST!", h.Word)
 			break
 		}
 		if h.Word == strings.Join(h.Blankspace, "") {
-			fmt.Printf(" <3 %d, Word: %s - GG YOU WON! \n", h.Lives, h.Word)
+			fmt.Printf(" <3 %d, Word: %s - GG YOU WON! \n", h.Attempts, h.Word)
 			break
 		}
 	}
