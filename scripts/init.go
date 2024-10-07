@@ -9,7 +9,7 @@ import (
 )
 
 // Import du dictionnaire dans un tableau de string
-func (h *Hangman) GetWordList(path string) ([]string, error) {
+func GetWordList(path string) ([]string, error) {
 	fmt.Println("~ Importing Words list")
 
 	file, err := os.Open(path)
@@ -20,13 +20,13 @@ func (h *Hangman) GetWordList(path string) ([]string, error) {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		h.WordList = append(h.WordList, scanner.Text())
+		WordList = append(WordList, scanner.Text())
 	}
-	return h.WordList, scanner.Err()
+	return WordList, scanner.Err()
 }
 
 // Import du dictionnaire dans un tableau de string
-func (h *Hangman) GetHangmanList(path string) ([]string, error) {
+func GetHangmanList(path string) ([]string, error) {
 	fmt.Println("~ Importing Hangman positions list")
 
 	file, err := os.Open(path)
@@ -37,40 +37,38 @@ func (h *Hangman) GetHangmanList(path string) ([]string, error) {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		h.HangmanPosition = append(h.HangmanPosition, scanner.Text())
+		HangmanPosition = append(HangmanPosition, scanner.Text())
 	}
-	return h.HangmanPosition, scanner.Err()
+	return HangmanPosition, scanner.Err()
 }
 
 // Choix aléatoire du mot à partir de la liste
-func (h *Hangman) GetWord() {
-	h.Word = h.WordList[rand.Intn(len(h.WordList))]
-	h.Word = strings.ToUpper(h.Word)
+func GetWord() {
+	Word = WordList[rand.Intn(len(WordList))]
+	Word = strings.ToUpper(Word)
 }
 
 // Initialisation des cases du Hangman
-func (h *Hangman) InitBlankspace() {
-	for range h.Word {
-		h.Blankspace = append(h.Blankspace, " _")
+func InitBlankspace() {
+	for range Word {
+		Blankspace = append(Blankspace, " _")
 	}
 }
 
 // Initialisation des fonctions
 func Init() {
 
-	var h Hangman
+	IsRunning = false
 
-	h.IsRunning = false
+	Attempts = 10
+	MaxAttempts = 10
+	HangmanLen = 7
 
-	h.Attempts = 10
-	h.MaxAttempts = 10
-	h.HangmanLen = 7
-
-	fmt.Println(h.ToAsciiArt("HANGMAN_LOL"))
+	fmt.Println(ToAsciiArt("HANGMAN_LOL"))
 	fmt.Println("\033[32m", "Good Luck, Have Fun you have 10 attempts.\n\n", "\033[0m")
 
-	h.GetWordList("words.txt")
-	h.GetHangmanList("hangman.txt")
-	h.GetWord()
-	h.InitBlankspace()
+	GetWordList("text/words.txt")
+	GetHangmanList("text/hangman.txt")
+	GetWord()
+	InitBlankspace()
 }

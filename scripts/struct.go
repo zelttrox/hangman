@@ -1,18 +1,16 @@
 package hangman
 
-type Hangman struct {
-	WordList   []string // Dictionnaire des mots
-	Word       string   // Mot choisi au hasard
-	Blankspace []string // Nombre de cases du Hangman
+var WordList []string   // Dictionnaire des mots
+var Word string         // Mot choisi au hasard
+var Blankspace []string // Nombre de cases du Hangman
 
-	HangmanPosition []string // Liste de positions du Hangmans
-	HangmanProgress int      // Progression du Hangman
-	LinesToAdd      int      // Lignes du Hangman à afficher
-	HangmanLen      int      // Taille d'une frame du Hangman
+var HangmanPosition []string // Liste de positions du Hangmans
+var HangmanProgress int      // Progression du Hangman
+var LinesToAdd int           // Lignes du Hangman à afficher
+var HangmanLen int           // Taille d'une frame du Hangman
 
-	Attempts    int // Nombre d'essais restants
-	MaxAttempts int // Nombre total d'essais
+var Attempts int    // Nombre d'essais restants
+var MaxAttempts int // Nombre total d'essais
 
-	Input     string // Lettre choisie par le joueur
-	IsRunning bool   // Est vrai si le jeu est lancé
-}
+var Input string   // Lettre choisie par le joueur
+var IsRunning bool // Est vrai si le jeu est lancé

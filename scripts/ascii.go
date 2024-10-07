@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func (h *Hangman) OpenAscii() [8][27]string {
+func OpenAscii() [8][27]string {
 	var AsciiTable [8][27]string
 	AsciiFile, err := ioutil.ReadFile("text/asciiLetters3D.txt")
 	if err != nil {
@@ -28,9 +28,9 @@ func (h *Hangman) OpenAscii() [8][27]string {
 	return AsciiTable
 }
 
-func (h *Hangman) ToAsciiArt(word string) string {
+func ToAsciiArt(word string) string {
 	asciiWord := ""
-	AsciiTable := h.OpenAscii()
+	AsciiTable := OpenAscii()
 	var TableIndex []int
 	for _, v := range word {
 		if v == 95 {

@@ -5,9 +5,9 @@ import (
 )
 
 // HangmanLen = 7
-func (h *Hangman) ProcessHangman() {
-	for i := h.HangmanProgress; i < (h.HangmanLen + h.HangmanProgress); i++ {
-		fmt.Println(h.HangmanPosition[i])
+func ProcessHangman() {
+	for i := HangmanProgress; i < (HangmanLen + HangmanProgress); i++ {
+		fmt.Println(HangmanPosition[i])
 	}
-	h.HangmanProgress += h.HangmanLen
+	HangmanProgress += HangmanLen
 }

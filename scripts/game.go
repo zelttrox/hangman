@@ -7,40 +7,38 @@ import (
 
 func Run() {
 
-	var h Hangman
-
-	h.IsRunning = true
+	IsRunning = true
 
 	for {
-		fmt.Printf("Word %s Letter: ", strings.Join(h.Blankspace, ""))
-		fmt.Scanln(&h.Input)
-		h.Input = strings.ToUpper(h.Input)
-		fmt.Println(h.Input)
+		fmt.Printf("Word %s Letter: ", strings.Join(Blankspace, ""))
+		fmt.Scanln(&Input)
+		Input = strings.ToUpper(Input)
+		fmt.Println(Input)
 
-		for _, inputletter := range h.Input {
+		for _, inputletter := range Input {
 			guess := false
-			for i, wordletter := range h.Word {
+			for i, wordletter := range Word {
 				if inputletter == wordletter {
-					h.Blankspace[i] = string(inputletter)
+					Blankspace[i] = string(inputletter)
 					guess = true
 				}
 			}
 
 			if !guess {
-				h.Attempts--
-				h.ProcessHangman()
+				Attempts--
+				ProcessHangman()
 			}
 		}
-		fmt.Println(h.Blankspace, h.Attempts)
+		fmt.Println(Blankspace, Attempts)
 
-		if h.Attempts <= 0 {
-			fmt.Println(h.ToAsciiArt(h.Word))
-			fmt.Print("</3, - AHHAHAHA YOU LOST!", h.Word)
+		if Attempts <= 0 {
+			fmt.Println(ToAsciiArt(Word))
+			fmt.Print("</3, - AHHAHAHA YOU LOST!", Word)
 			break
 		}
-		if h.Word == strings.Join(h.Blankspace, "") {
-			fmt.Println(h.ToAsciiArt(h.Word))
-			fmt.Printf(" <3 %d, - GG YOU WON! \n", h.Attempts)
+		if Word == strings.Join(Blankspace, "") {
+			fmt.Println(ToAsciiArt(Word))
+			fmt.Printf(" <3 %d, - GG YOU WON! \n", Attempts)
 			break
 		}
 	}

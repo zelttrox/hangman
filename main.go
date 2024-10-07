@@ -1,8 +1,8 @@
 package main
 
-import h "hangman/scripts"
+import hg "hangman/scripts"
 
 func main() {
-	h.Init() // Initialisation du jeu
-	h.Run()  // Lancement de la boucle du jeu
+	hg.Init() // Initialisation du jeu
+	hg.Run()  // Lancement de la boucle du jeu
 }
