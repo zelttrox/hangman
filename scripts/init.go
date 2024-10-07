@@ -48,6 +48,13 @@ func GetWord() {
 	Word = strings.ToUpper(Word)
 }
 
+func RevealLetters() {
+	LetterAmount = rand.Intn(len(Word)/2 - 1)
+		for range LetterAmount {
+			
+	}
+}
+
 // Initialisation des cases du Hangman
 func InitBlankspace() {
 	for range Word {

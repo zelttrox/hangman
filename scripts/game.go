@@ -25,11 +25,18 @@ func Run() {
 			}
 
 			if !guess {
+				for i := 0; i < len(AttemptedLetter); i++ {
+					if Input == AttemptedLetter[i] {
+						fmt.Println("You've already guessed that letter. Try again!")
+					}
+				}
 				Attempts--
 				ProcessHangman()
+				AttemptedLetter = append(AttemptedLetter, Input)
 			}
 		}
 		fmt.Println(Blankspace, Attempts)
+		fmt.Println("Attempted Letter(s): ", AttemptedLetter)
 
 		if Attempts <= 0 {
 			fmt.Println(ToAsciiArt(Word))
