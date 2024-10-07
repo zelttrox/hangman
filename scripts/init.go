@@ -1,4 +1,4 @@
-package main
+package hangman
 
 import (
 	"bufio"
@@ -56,13 +56,18 @@ func (h *Hangman) InitBlankspace() {
 }
 
 // Initialisation des fonctions
-func (h *Hangman) Init() {
+func Init() {
+
+	var h Hangman
 
 	h.IsRunning = false
 
 	h.Attempts = 10
 	h.MaxAttempts = 10
 	h.HangmanLen = 7
+
+	fmt.Println(h.ToAsciiArt("HANGMAN_LOL"))
+	fmt.Println("\033[32m", "Good Luck, Have Fun you have 10 attempts.\n\n", "\033[0m")
 
 	h.GetWordList("words.txt")
 	h.GetHangmanList("hangman.txt")

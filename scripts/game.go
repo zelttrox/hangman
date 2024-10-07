@@ -1,11 +1,13 @@
-package main
+package hangman
 
 import (
 	"fmt"
 	"strings"
 )
 
-func (h *Hangman) Run() {
+func Run() {
+
+	var h Hangman
 
 	h.IsRunning = true
 
@@ -32,11 +34,13 @@ func (h *Hangman) Run() {
 		fmt.Println(h.Blankspace, h.Attempts)
 
 		if h.Attempts <= 0 {
-			fmt.Printf("</3, Word: %s - AHHAHAHA YOU LOST!", h.Word)
+			fmt.Println(h.ToAsciiArt(h.Word))
+			fmt.Print("</3, - AHHAHAHA YOU LOST!", h.Word)
 			break
 		}
 		if h.Word == strings.Join(h.Blankspace, "") {
-			fmt.Printf(" <3 %d, Word: %s - GG YOU WON! \n", h.Attempts, h.Word)
+			fmt.Println(h.ToAsciiArt(h.Word))
+			fmt.Printf(" <3 %d, - GG YOU WON! \n", h.Attempts)
 			break
 		}
 	}

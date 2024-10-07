@@ -1,4 +1,4 @@
-package main
+package hangman
 
 type Hangman struct {
 	WordList   []string // Dictionnaire des mots
