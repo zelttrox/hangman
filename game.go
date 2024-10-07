@@ -7,7 +7,7 @@ import (
 
 func (h *Hangman) Run() {
 
-	h.Attempts = 10
+	h.IsRunning = true
 
 	for {
 		fmt.Printf("Word %s Letter: ", strings.Join(h.Blankspace, ""))
@@ -26,6 +26,7 @@ func (h *Hangman) Run() {
 
 			if !guess {
 				h.Attempts--
+				h.ProcessHangman()
 			}
 		}
 		fmt.Println(h.Blankspace, h.Attempts)
