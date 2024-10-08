@@ -20,7 +20,6 @@ func Run() {
 	IsRunning = true
 
 	for {
-		fmt.Printf("Word %s Letter: ", strings.Join(Blankspace, ""))
 		fmt.Scanln(&Input)
 		Input = strings.ToUpper(Input)
 		fmt.Println(Input)
