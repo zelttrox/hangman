@@ -2,6 +2,7 @@ package hangman
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"math/rand"
 	"os"
@@ -48,10 +49,26 @@ func GetWord() {
 	Word = strings.ToUpper(Word)
 }
 
+func GetArg() {
+	argHardcore := flag.Bool("hard", false, "Hardcore mode")
+	argDictionary := flag.String("list", "lol", "Choose dictionary")
+	flag.Parse()
+
+	if *argHardcore {
+		IsHardcoreMode = true
+
+		fmt.Println("\033[31m", "Hardcore Mode enabled", "\033[0m")
+	}
+
+	if *argDictionary == "lol" {
+		Dictionary = "text/words.txt"
+	}
+}
+
 func RevealLetters() {
 	LetterAmount = rand.Intn(len(Word)/2 - 1)
-		for range LetterAmount {
-			
+	for range LetterAmount {
+
 	}
 }
 
@@ -70,6 +87,8 @@ func Init() {
 	Attempts = 10
 	MaxAttempts = 10
 	HangmanLen = 7
+
+	GetArg()
 
 	fmt.Println(ToAsciiArt("HANGMAN_LOL"))
 	fmt.Println("\033[32m", "Good Luck, Have Fun you have 10 attempts.\n\n", "\033[0m")

@@ -5,6 +5,16 @@ import (
 	"strings"
 )
 
+func CheckAttempted(input string) {
+	for i := 0; i < len(AttemptedLetter); i++ {
+		if input == AttemptedLetter[i] {
+			LetterTried = true
+		} else {
+			LetterTried = false
+		}
+	}
+}
+
 func Run() {
 
 	IsRunning = true
@@ -25,14 +35,14 @@ func Run() {
 			}
 
 			if !guess {
-				for i := 0; i < len(AttemptedLetter); i++ {
-					if Input == AttemptedLetter[i] {
-						fmt.Println("You've already guessed that letter. Try again!")
-					}
+				CheckAttempted(Input)
+				if LetterTried {
+					fmt.Println("You've already guessed that letter. Try again!")
+				} else if !LetterTried {
+					Attempts--
+					ProcessHangman()
+					AttemptedLetter = append(AttemptedLetter, Input)
 				}
-				Attempts--
-				ProcessHangman()
-				AttemptedLetter = append(AttemptedLetter, Input)
 			}
 		}
 		fmt.Println(Blankspace, Attempts)
