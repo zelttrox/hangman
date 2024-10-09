@@ -96,5 +96,6 @@ func Init() {
 	GetWordList("text/words.txt")
 	GetHangmanList("text/hangman.txt")
 	GetWord()
+
 	InitBlankspace()
 }
