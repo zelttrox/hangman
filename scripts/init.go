@@ -11,7 +11,6 @@ import (
 
 // Import du dictionnaire dans un tableau de string
 func GetWordList(path string) ([]string, error) {
-	fmt.Println("~ Importing Words list")
 
 	file, err := os.Open(path)
 	if err != nil {
@@ -28,7 +27,6 @@ func GetWordList(path string) ([]string, error) {
 
 // Import du dictionnaire dans un tableau de string
 func GetHangmanList(path string) ([]string, error) {
-	fmt.Println("~ Importing Hangman positions list")
 
 	file, err := os.Open(path)
 	if err != nil {
@@ -49,6 +47,7 @@ func GetWord() {
 	Word = strings.ToUpper(Word)
 }
 
+// Scan des arguments choisis dans le terminal
 func GetArg() {
 	argHardcore := flag.Bool("hard", false, "Hardcore mode")
 	argDictionary := flag.String("list", "lol", "Choose dictionary")
@@ -65,6 +64,7 @@ func GetArg() {
 	}
 }
 
+// WIP
 func RevealLetters() {
 	LetterAmount = rand.Intn(len(Word)/2 - 1)
 	for range LetterAmount {
@@ -98,4 +98,6 @@ func Init() {
 	GetWord()
 
 	InitBlankspace()
+
+	fmt.Println(Blankspace, Attempts)
 }
