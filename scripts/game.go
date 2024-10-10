@@ -10,8 +10,6 @@ func CheckAttempted(input string) {
 	for i := 0; i < len(AttemptedLetter); i++ {
 		if input == AttemptedLetter[i] {
 			LetterTried = true
-		} else {
-			LetterTried = false
 		}
 	}
 }
@@ -54,6 +52,7 @@ func Run() {
 				CheckAttempted(Input)
 				if LetterTried {
 					fmt.Println("You've already guessed that letter. Try again!")
+					LetterTried = false
 				} else if !LetterTried {
 					Attempts--
 					ProcessHangman()
