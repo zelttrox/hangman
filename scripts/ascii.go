@@ -8,7 +8,7 @@ import (
 
 func OpenAscii() [8][27]string {
 	var AsciiTable [8][27]string
-	AsciiFile, err := ioutil.ReadFile("text/asciiLetters3D.txt")
+	AsciiFile, err := ioutil.ReadFile("files/asciiLetters3D.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

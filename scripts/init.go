@@ -55,15 +55,13 @@ func GetArg() {
 
 	if *argHardcore {
 		IsHardcoreMode = true
-
-		fmt.Println("\033[31m", "Hardcore Mode enabled", "\033[0m")
 	}
 
 	if *argDictionary == "lol" {
-		Dictionary = "text/league.txt"
+		Dictionary = "files/league.txt"
 
 	} else if *argDictionary == "games" {
-		Dictionary = "text/games.txt"
+		Dictionary = "files/games.txt"
 	}
 }
 
@@ -79,20 +77,28 @@ func Init() {
 
 	IsRunning = false
 
-	Attempts = 10
-	MaxAttempts = 10
-	HangmanLen = 7
-
 	GetArg()
 
 	fmt.Println(ToAsciiArt("HANGMAN"))
+
+	if IsHardcoreMode {
+		Attempts = 5
+		fmt.Println("\033[31m", "Hardcore Mode enabled", "\033[0m")
+	} else {
+		Attempts = 10
+	}
+
+	MaxAttempts = 10
+	HangmanLen = 7
+
 	fmt.Println("\033[32m", "Good Luck, Have Fun you have 10 attempts.\n\n", "\033[0m")
 
 	GetWordList(Dictionary)
-	GetHangmanList("text/hangman.txt")
+	GetHangmanList("files/hangman.txt")
 	GetWord()
 
 	InitBlankspace()
 
 	fmt.Println(Blankspace, Attempts)
+	SpaceOut(5)
 }

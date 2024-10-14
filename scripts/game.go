@@ -5,15 +5,6 @@ import (
 	"strings"
 )
 
-// Vérifie si la lettre entrée a déjà été essayée
-func CheckAttempted(input string) {
-	for i := 0; i < len(AttemptedLetter); i++ {
-		if input == AttemptedLetter[i] {
-			LetterTried = true
-		}
-	}
-}
-
 // Fonction principale du jeu
 func Run() {
 
@@ -78,7 +69,16 @@ func Run() {
 	}
 }
 
-// Fonction de perte
+// Vérifie si la lettre entrée a déjà été essayée
+func CheckAttempted(input string) {
+	for i := 0; i < len(AttemptedLetter); i++ {
+		if input == AttemptedLetter[i] {
+			LetterTried = true
+		}
+	}
+}
+
+// Fonction de lose
 func Lose() {
 	fmt.Println(ToAsciiArt(Word))
 	fmt.Print("</3, - AHHAHAHA YOU LOST!", Word)
