@@ -60,15 +60,10 @@ func GetArg() {
 	}
 
 	if *argDictionary == "lol" {
-		Dictionary = "text/words.txt"
-	}
-}
+		Dictionary = "text/league.txt"
 
-// WIP
-func RevealLetters() {
-	LetterAmount = rand.Intn(len(Word)/2 - 1)
-	for range LetterAmount {
-
+	} else if *argDictionary == "games" {
+		Dictionary = "text/games.txt"
 	}
 }
 
@@ -90,10 +85,10 @@ func Init() {
 
 	GetArg()
 
-	fmt.Println(ToAsciiArt("HANGMAN_LOL"))
+	fmt.Println(ToAsciiArt("HANGMAN"))
 	fmt.Println("\033[32m", "Good Luck, Have Fun you have 10 attempts.\n\n", "\033[0m")
 
-	GetWordList("text/words.txt")
+	GetWordList(Dictionary)
 	GetHangmanList("text/hangman.txt")
 	GetWord()
 
