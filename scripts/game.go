@@ -52,7 +52,7 @@ func Run() {
 			}
 		}
 		// Affiche les lettres déjà essayées
-		fmt.Println(Blankspace, Attempts)
+		fmt.Println(Blankspace, "\n \n Attempts left: ", Attempts)
 		fmt.Println("Attempted Letter(s): ", "\033[36m", AttemptedLetter, "\033[0m")
 		SpaceOut(4)
 
